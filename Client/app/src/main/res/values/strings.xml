@@ -1,0 +1,62 @@
+<resources>
+    <!-- App title and fragment titles -->
+    <string name="app_name">ActivityWorld</string>
+    <string name="field_list_fragment_label">Playing Fields</string>
+    <string name="availability_list_fragment_label">Field Type: {fieldType}</string>
+    <string name="booking_fragment_label">Booking</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- Strings related to home -->
+    <string name="description">Description:</string>
+    <string name="select_date">Select Date</string>
+    <string name="description_plain_text">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</string>
+    <string name="fields">Fields</string>
+    <string name="drop_menu_field_label">Field: %s</string>
+    <string name="select_field">Select a field</string>
+    <string name="field_name">Name: %s</string>
+    <string name="minutes_length">%d minutes on %s</string>
+    <string name="hours_length">%d hours on %s</string>
+    <string name="seconds_length">%d seconds on %s</string>
+    <string name="price">Price: %s</string>
+
+    <!-- Strings related to booking -->
+    <string name="booking">Booking</string>
+    <string name="availability_details">%1$s, %2$s!</string>
+    <string name="add_participants">Add Participants</string>
+    <string name="date">Date: %1$s %2$s</string>
+    <string name="add_equipment">Add Equipment</string>
+    <string name="enter_name">Name</string>
+    <string name="enter_surname">Surname</string>
+    <string name="participant_label">Participant %d</string>
+    <string name="purchase_alert_title">Booking purchase</string>
+    <string name="cancel_alert_title">Cancel the Booking?</string>
+    <string name="booking_details">Field: %1$s \nDate: %2$s \nTotal: %3$s \n\nThank you!</string>
+    <string name="cancel_details">By clicking on %s button your booking will be canceled.</string>
+    <string name="purchase_completed">Purchase Done!</string>
+    <string name="booking_completed">Your booking has been completed successfully! \n\n Thank You!!</string>
+    <string name="submit_purchase">Purchase</string>
+    <string name="next">Next</string>
+    <string name="cancel">Cancel</string>
+    <string name="resume">Resume</string>
+
+
+
+    <string name="subtotal">Subtotal: %s</string>
+    <string name="total">Total: %s</string>
+    <string name="booking_summary">Booking Summary</string>
+    <string name="submit">Submit Order</string>
+    <string name="order_details">Quantity: %1$s \n Flavor: %2$s \nPickup date: %3$s \n
+        Total: %4$s \n\n Thank you!</string>
+    <plurals name="cupcakes">
+        <item quantity="one">%d cupcake</item>
+        <item quantity="other">%d cupcakes</item>
+    </plurals>
+</resources>

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.activityworld.home.model.FieldViewModel" />
+
+        <variable
+            name="availabilityFragment"
+            type="com.example.activityworld.home.ui.AvailabilityListFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".home.ui.AvailabilityListFragment">
+
+        <!--Create a TextInputLayout and choose the style,
+            for now we are choosing the OutlinedBox ExposedDropdownMenu   -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/field_spinner"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fields"
+            app:boxStrokeColor="?attr/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_baseline_filter_list_24">
+
+            <!-- Inside text input layout add
+                 an auto complete text view
+                   and make its input type to none-->
+            <AutoCompleteTextView
+                android:id="@+id/field_spinner_inner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:completionThreshold="@{999999}"
+                android:hint="@string/select_field"
+                android:inputType="none"
+                android:text="@string/select_field" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ImageView to display the Field Image-->
+        <ImageView
+            android:id="@+id/field_image"
+            android:layout_width="164dp"
+            android:layout_height="194dp"
+            android:layout_marginTop="16dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            app:imageRes="@{viewModel.field.imageResourceId}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/field_spinner"
+            app:status="@{viewModel.status}"
+            tools:src="@mipmap/ic_launcher_round" />
+
+        <!-- TextView to display the Field Name-->
+        <TextView
+            android:id="@+id/field_name"
+            style="@style/Widget.ActivityWorld.TextView.FieldName.Label"
+            android:layout_marginStart="16dp"
+            android:text="@{@string/field_name(viewModel.field.name)}"
+            app:layout_constraintStart_toEndOf="@id/field_image"
+            app:layout_constraintTop_toTopOf="@id/field_image"
+            tools:text="Soccer" />
+
+        <!-- TextView to display the Description Label-->
+        <TextView
+            android:id="@+id/field_description_label"
+            style="@style/Widget.ActivityWorld.TextView.FieldDescription.Label"
+            android:text="@string/description"
+            app:layout_constraintStart_toStartOf="@id/field_name"
+            app:layout_constraintTop_toBottomOf="@id/field_name" />
+
+        <!-- TextView to display the Field Info -->
+        <TextView
+            android:id="@+id/field_description"
+            style="@style/Widget.Field.TextView.Info"
+            android:paddingTop="@dimen/base_margin"
+            android:text="@{viewModel.field.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/field_description_label"
+            app:layout_constraintTop_toBottomOf="@id/field_description_label"
+            tools:text="@string/description_plain_text" />
+
+
+        <!-- TextView to display the Price Info -->
+        <TextView
+            android:id="@+id/field_price"
+            style="@style/Widget.ActivityWorld.TextView.Subtotal"
+            android:layout_marginStart="110dp"
+            app:fieldPriceString="@{viewModel.field}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/field_image"
+            app:layout_constraintTop_toBottomOf="@id/field_description"
+            tools:text="Subtotal $5.00" />
+
+        <!-- Divider -->
+        <View
+            android:id="@+id/divider"
+            style="@style/Widget.ActivityWorld.Divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/field_image" />
+
+        <!-- TextField to open the material design date picker dialog-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/select_date"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/select_date"
+            app:layout_constraintStart_toStartOf="@id/field_spinner"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            app:startIconDrawable="@drawable/ic_baseline_calendar_month_24">
+
+            <!-- EditText view to show the selected date by the user-->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/select_date_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                android:inputType="none"
+                android:onClick="@{() -> availabilityFragment.showDatePicker()}"
+                android:text="@{viewModel.dateInString}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/next_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_date"
+            app:listData="@{viewModel.repository.availabilities}"
+            app:spanCount="3"
+            tools:listitem="@layout/grid_list_availability" />
+
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="136dp"
+            android:layout_height="136dp"
+            android:scaleType="centerCrop"
+            app:apiStatus="@{viewModel.status}"
+            app:layout_constraintBottom_toTopOf="@id/next_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_date" />
+
+        <!-- TODO: cancel the order when clicked -->
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/Widget.Order.Button.Cancel"
+            android:onClick="@{() -> availabilityFragment.cancelOrder()}"
+            app:layout_constraintEnd_toStartOf="@id/next_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/next_button" />
+
+        <!-- TODO: go to the next screen when clicked -->
+        <Button
+            android:id="@+id/next_button"
+            style="@style/Widget.Order.Button.Next"
+            android:onClick="@{() -> availabilityFragment.goToBooking()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:enabled="false"
+            app:layout_constraintStart_toEndOf="@id/cancel_button"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="availability"
+            type="com.example.activityworld.home.model.FieldAvailability" />
+
+        <variable
+            name="clickListener"
+            type="com.example.activityworld.home.adapter.AvailabilityListener" />
+    </data>
+
+    <Button
+        android:id="@+id/button_availability"
+        style="@style/Widget.Order.Button.Availability"
+        availabilityStatus="@{availability.status}"
+        availabilityTimeFormatted="@{availability}"
+        android:backgroundTint="@color/button_background_color"
+        tools:text="17:00/18:00" />
+</layout>

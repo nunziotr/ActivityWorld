@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.activityworld.booking.model.BookingViewModel" />
+
+        <variable
+            name="bookingFragment"
+            type="com.example.activityworld.booking.ui.BookingFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/side_margin">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/loadingPanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- TextView to display the Booking section Label -->
+        <TextView
+            android:id="@+id/booking_label"
+            style="@style/Widget.ActivityWorld.TextView.FieldName.Label"
+            android:layout_marginTop="@dimen/side_margin"
+            android:text="@string/booking"
+            android:textColor="@color/green_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- TextView to display the selected Field Name -->
+        <TextView
+            android:id="@+id/field_name"
+            style="@style/Widget.ActivityWorld.TextView.FieldDescription.Label"
+            android:text="@{@string/field_name(viewModel.field.name)}"
+            app:layout_constraintStart_toStartOf="@id/booking_label"
+            app:layout_constraintTop_toBottomOf="@id/booking_label"
+            tools:text="SOCCER" />
+
+        <!-- TextView to display the selected Availability Info -->
+        <TextView
+            android:id="@+id/availability_info"
+            style="@style/Widget.ActivityWorld.TextView.FieldDescription.Label"
+            availabilityDateFormatted="@{viewModel.availability}"
+            app:layout_constraintBottom_toBottomOf="@id/field_name"
+            app:layout_constraintTop_toTopOf="@id/field_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Feb 02 2022, 15:00" />
+
+        <!-- Text displaying the Total price -->
+        <TextView
+            android:id="@+id/total"
+            style="@style/Widget.ActivityWorld.TextView.FieldName.Label"
+            android:text="@{@string/total(viewModel.total)}"
+            app:layout_constraintBottom_toBottomOf="@id/booking_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/booking_label"
+            tools:text="Total: $10.00" />
+
+        <!-- Divider -->
+        <View
+            android:id="@+id/divider"
+            style="@style/Widget.ActivityWorld.Divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/field_name" />
+
+        <!-- ImageView for Icon -->
+        <ImageView
+            android:id="@+id/icon_participants"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@id/add_participants"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_participants"
+            app:srcCompat="@drawable/ic_group" />
+
+        <!-- TextView to display the Add Participants section Label -->
+        <TextView
+            android:id="@+id/add_participants"
+            style="@style/Widget.ActivityWorld.TextView.FieldName.Label"
+            android:layout_marginStart="@dimen/base_margin"
+            android:layout_marginTop="@dimen/side_margin"
+            android:text="@string/add_participants"
+            app:layout_constraintStart_toEndOf="@id/icon_participants"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
+
+        <!-- Button to add more participants -->
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:onClick="@{() -> bookingFragment.onAdd()}"
+            android:src="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="@id/add_participants"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/add_participants"
+            app:tint="@color/green" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/equipment_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_participants"
+            tools:listitem="@layout/list_item_participant" />
+
+        <ImageView
+            android:id="@+id/status_image"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            app:apiStatus="@{viewModel.status}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Button to move to the Add Equipment fragment-->
+        <Button
+            android:id="@+id/equipment_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/side_margin"
+            android:text="@string/add_equipment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recycler_view" />
+
+        <!-- Button to cancel the booking when clicked -->
+        <Button
+            android:id="@+id/cancel_button"
+            style="@style/Widget.Order.Button.Cancel"
+            android:onClick="@{() -> bookingFragment.onCancel()}"
+            app:layout_constraintEnd_toStartOf="@id/next_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/next_button" />
+
+        <!-- Button to go to the next screen when clicked -->
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/side_margin"
+            android:onClick="@{() -> bookingFragment.onSubmit()}"
+            android:text="@string/submit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancel_button"
+            app:layout_constraintTop_toBottomOf="@id/equipment_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fieldListFragment">
+
+    <fragment
+        android:id="@+id/fieldListFragment"
+        android:name="com.example.activityworld.home.ui.FieldListFragment"
+        android:label="@string/field_list_fragment_label"
+        tools:layout="@layout/fragment_field_grid_list">
+        <action
+            android:id="@+id/action_fieldListFragment_to_availabilityListFragment"
+            app:destination="@id/availabilityListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/availabilityListFragment"
+        android:name="com.example.activityworld.home.ui.AvailabilityListFragment"
+        android:label="@string/availability_list_fragment_label"
+        tools:layout="@layout/fragment_availability_list">
+        <action
+            android:id="@+id/action_availabilityListFragment_to_fieldListFragment"
+            app:destination="@id/fieldListFragment"
+            app:popUpTo="@id/fieldListFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="fieldType"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_availabilityListFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.example.activityworld.booking.ui.BookingFragment"
+        android:label="@string/booking_fragment_label"
+        tools:layout="@layout/fragment_booking">
+        <argument
+            android:name="availability"
+            app:argType="com.example.activityworld.home.model.FieldAvailability" />
+        <action
+            android:id="@+id/action_bookingFragment_to_availabilityListFragment"
+            app:destination="@id/availabilityListFragment"
+            app:popUpTo="@id/availabilityListFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_bookingFragment_to_fieldListFragment"
+            app:destination="@id/fieldListFragment"
+            app:popUpTo="@id/fieldListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>

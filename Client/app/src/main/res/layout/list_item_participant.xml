@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="participant"
+            type="com.example.activityworld.booking.model.Participant" />
+
+        <variable
+            name="clickListener"
+            type="com.example.activityworld.booking.adapter.ParticipantListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/side_margin">
+
+        <TextView
+            android:id="@+id/participant_label"
+            style="@style/Widget.ActivityWorld.TextView.FieldDescription.Label"
+            android:text="@{@string/participant_label(participant.id)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/name_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/base_margin"
+            android:hint="@string/enter_name"
+            android:inputType="textPersonName"
+            android:text="@={participant.name}"
+            app:layout_constraintEnd_toStartOf="@id/surname_edit_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/participant_label" />
+
+        <EditText
+            android:id="@+id/surname_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_surname"
+            android:imeOptions="actionDone"
+            android:inputType="textPersonName"
+            android:text="@={participant.surname}"
+            app:layout_constraintBottom_toBottomOf="@id/name_edit_text"
+            app:layout_constraintEnd_toStartOf="@id/remove_button"
+            app:layout_constraintStart_toEndOf="@id/name_edit_text"
+            app:layout_constraintTop_toTopOf="@id/name_edit_text" />
+
+        <!-- Button to remove participants -->
+        <ImageButton
+            android:id="@+id/remove_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/side_margin"
+            android:background="@null"
+            android:onClick="@{() -> clickListener.onClick(participant)}"
+            android:src="@drawable/ic_baseline_remove_24"
+            app:layout_constraintBottom_toBottomOf="@id/surname_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/surname_edit_text"
+            app:layout_constraintTop_toTopOf="@id/surname_edit_text"
+            app:tint="@color/red_700" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

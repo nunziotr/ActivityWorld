@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text Appearance Subtitle1 style -->
+    <style name="TextAppearance.LunchTray.Subtitle1"
+        parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <!-- TextView style -->
+    <style name="Widget.ActivityWorld.TextView" parent="Widget.MaterialComponents.TextView">
+        <item name="android:minHeight">@dimen/min_text_height</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>    </style>
+
+    <!-- Radio Button style -->
+    <style name="Widget.ActivityWorld.CompoundButton.RadioButton"
+        parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="android:paddingEnd">@dimen/radio_button_padding</item>
+        <item name="android:paddingStart">@dimen/radio_button_padding</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+    </style>
+
+    <!-- Switch Button style -->
+    <style name="Widget.ActivityWorld.CompoundButton.Switch" parent="Widget.MaterialComponents.CompoundButton.Switch">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+    </style>
+
+    <!-- Button Style for Cancel Button -->
+    <style name="Widget.Order.Button.Cancel"
+        parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/side_margin</item>
+        <item name="android:text">@string/cancel</item>
+    </style>
+
+    <!-- Button Style for Next Button -->
+    <style name="Widget.Order.Button.Next" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/side_margin</item>
+        <item name="android:text">@string/next</item>
+    </style>
+
+    <!-- Button Style for Availability Button -->
+    <style name="Widget.Order.Button.Availability" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">?colorPrimary</item>
+        <item name="rippleColor">?colorAccent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_width">107dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/availability_margin</item>
+        <item name="android:padding">@dimen/button_padding</item>
+    </style>
+
+    <!-- TextView Style for Field Name Label -->
+    <style name="Widget.ActivityWorld.TextView.FieldName.Label"
+        parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- TextView Style for Field Description Label -->
+    <style name="Widget.ActivityWorld.TextView.FieldDescription.Label"
+        parent="Widget.MaterialComponents.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/checkout_item_margin</item>
+        <item name="android:layout_marginBottom">@dimen/checkout_item_margin</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody1</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- TextView Style for Field Info -->
+    <style name="Widget.Field.TextView.Info" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceBody2</item>
+        <item name="android:paddingStart">@dimen/base_margin</item>
+        <item name="android:paddingEnd">@dimen/base_margin</item>
+        <item name="singleLine">false</item>
+        <item name="android:scrollHorizontally">false</item>
+        <item name="maxLines">5</item>
+    </style>
+
+    <!-- TextView Style for Subtotal -->
+    <style name="Widget.ActivityWorld.TextView.Subtotal" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/side_margin</item>
+        <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
+    </style>
+
+    <!-- Divider style -->
+    <style name="Widget.ActivityWorld.Divider" parent="@style/Theme.ActivityWorld">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">?attr/dividerHorizontal</item>
+        <item name="android:layout_marginTop">@dimen/base_margin</item>
+    </style>
+
+    <style name="Widget.ActivityWorld.TextInputLayout.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeErrorColor">@color/red_700</item>
+        <item name="errorIconTint">@color/red_700</item>
+        <item name="errorTextColor">@color/red_700</item>
+        <item name="errorIconDrawable">@drawable/ic_error</item>
+        <item name="helperTextTextAppearance">@style/TextAppearance.MaterialComponents.Subtitle1</item>
+    </style>
+
+    <!-- To enable the custom emptyText attribute, it must be declared as a styleable. -->
+    <declare-styleable name="MaterialSpinner">
+        <attr name="emptyText" format="reference|string" />
+    </declare-styleable>
+
+    <!-- Participant Header -->
+    <style name="header">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+
+    <!-- Progress Bar -->
+    <style name="GenericProgressBackground" parent="android:Theme">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">#DD111111</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="GenericProgressIndicator" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:indeterminate">true</item>
+    </style>
+
+    <!-- Alert Dialogs Themes -->
+    <style name="AlertDialogTheme">
+        <item name="buttonBarPositiveButtonStyle">@style/Alert.Button.Positive</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Alert.Button.Neutral</item>
+    </style>
+
+    <style name="Alert.Button.Positive" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">?colorPrimary</item>
+        <item name="rippleColor">?colorAccent</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Alert.Button.Neutral" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="rippleColor">?colorAccent</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
